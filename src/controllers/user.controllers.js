@@ -7,8 +7,8 @@ const getAll = catchError(async (req, res) => {
 });
 
 const create = catchError(async (req, res) => {
-  const user = req.body;
-  const createUser = await User.create(user);
+  //const user = req.body;
+  const createUser = await User.create(req.body);
   return res.status(201).json(createUser);
 });
 
@@ -34,9 +34,8 @@ const remove = catchError(async (req, res) => {
 
 const update = catchError(async (req, res) => {
   const { id } = req.params;
-  const user = req.body;
 
-  const userUpdate = await User.update(user, {
+  const userUpdate = await User.update(req.body, {
     where: { id },
     returning: true,
   });
